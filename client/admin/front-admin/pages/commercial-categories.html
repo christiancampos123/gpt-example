@@ -1,0 +1,56 @@
+<delete-element-modal-component></delete-element-modal-component>
+<image-gallery-component></image-gallery-component>
+<message-component></message-component>
+
+<header-component>
+  <row-component options='{"columns":"8fr 2fr", "height":"100px"}'>
+    <column-component>
+      <logo-component title="Pedidos"></logo-component>
+    </column-component>
+    <column-component options='{"justifyContent":"flex-end"}'>
+      <menu-component></menu-component>
+    </column-component>
+  </row-component>
+</header-component>
+
+<main-component padding="0.5rem">
+  <crud-component>
+    <!-- <table-filter 
+      slot="filter"
+      url="/api/admin/users">
+    </table-filter> -->
+
+    <table-component 
+      slot="table"
+      endpoint="/api/admin/commercial-categories"
+      structure="{
+        'headers': [
+          {'label': 'Nombre', 'field': 'name'},
+          {'label': 'Fecha de creación', 'field': 'createdAt'},
+          {'label': 'Fecha de actualización', 'field': 'updatedAt'}
+        ],
+        'recordButtons': ['edit', 'remove'],
+        'tableButtons': ['filterButton']
+      }"
+    >
+    </table-component>
+
+    <form-component 
+      slot="form"
+      endpoint="/api/admin/commercial-categories"
+      structure="{
+        'tabs': [
+          {'name': 'general', 'label': 'General'}
+        ],
+        'inputs': {
+          'general': {
+            'noLocale': [
+              {'name': 'id', 'element':'input', 'type': 'hidden'},
+              {'name': 'name', 'element':'input', 'type': 'text', 'label': 'Nombre', 'width': 'half-width'}
+            ]
+          }
+        }
+      }">
+    </form-component>
+  </crud-component>
+</main-component>

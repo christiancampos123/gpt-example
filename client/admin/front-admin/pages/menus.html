@@ -1,0 +1,120 @@
+<delete-element-modal-component></delete-element-modal-component>
+<image-gallery-component></image-gallery-component>
+<message-component></message-component>
+
+<header-component>
+  <row-component options='{"columns":"8fr 2fr", "height":"100px"}'>
+    <column-component>
+      <logo-component title="GameXop"></logo-component>
+    </column-component>
+    <column-component options='{"justifyContent":"flex-end"}'>
+      <menu-component></menu-component>
+    </column-component>
+  </row-component>
+</header-component>
+
+<main-component>
+  <crud-component>
+    <!-- <table-filter
+      slot='filter'
+      url='/api/admin/users'
+    /> -->
+
+    <table-component
+      slot="table"
+      endpoint="/api/admin/menus"
+      structure="{
+        'headers': [
+          {'label': 'Nombre', 'field': 'name'},
+          {'label': 'Entorno', 'field': 'environment'},
+          {'label': 'Fecha de creación', 'field': 'createdAt'},
+          {'label': 'Fecha de actualización', 'field': 'updatedAt'}
+        ],
+        'recordButtons': ['edit', 'remove'],
+        'tableButtons': ['filterButton']
+      }"/>
+    </table-component>
+
+    <form-component
+      slot="form"
+      endpoint="/api/admin/menus"
+      structure="{
+        'tabs': [
+          {'name': 'general', 'label': 'General'}
+        ],
+        'inputs': {
+          'general': {
+            'noLocale': [
+              {'name': 'id', 'element':'input', 'type': 'hidden'},
+              {'name': 'name', 'element':'input', 'type': 'text', 'label': 'Nombre', 'width': 'one-third-width'},
+              {'name': 'environment', 'element':'select', 'label': 'Entorno', 'width': 'one-third-width', 'options': 
+                [
+                  {'label': 'Administración', 'value': 'admin'},
+                  {'label': 'Cliente', 'value': 'customer'}
+                ]
+              },
+              {'name': 'private', 'element':'select', 'label': 'Privado', 'width': 'one-third-width', 'options': 
+                [
+                  {'label': 'Sí', 'value': 'true'},
+                  {'label': 'No', 'value': 'false'}
+                ]
+              },
+              {'element': 'dependants', 'childs': [
+                {
+                  'name': 'menu-items', 
+                  'label': 'Items del menú',
+                  'locale': true,
+                  'structure': [
+                    {'element': 'subform', 'width': 'half-width', 'endpoint': '/api/admin/menu-items', 'structure': 
+                      {
+                        'tabs': [
+                          {'name': 'general', 'label': 'General'}
+                        ],
+                        'inputs': {
+                          'general': {
+                            'noLocale': [
+                              {'name': 'id', 'element':'input', 'type': 'hidden'},
+                              {'name': 'type', 'element':'select', 'label': 'Tipo de enlace', 'width': 'full-width', 'related': 'true', 'options': 
+                                [
+                                  {'label': 'Enlace interno', 'value': 'internal'},
+                                  {'label': 'Enlace externo', 'value': 'external'}
+                                ]
+                              },
+                              {'name': 'urlExternal', 'element':'input', 'type': 'text', 'label': 'Url', 'width': 'full-width', 'relatedinput': 'type', 'relatedvalue': 'external'},
+                              {'name': 'urlInternal', 'element':'select', 'label': 'Url', 'width': 'full-width', 'related': 'type', 'relatedinput': 'type', 'relatedvalue': 'internal', 'endpoint': '/api/admin/locale-seos/get-urls', 'parent-filter': ['environment']},
+                              {'name': 'private', 'element':'select', 'label': 'Privado', 'width': 'half-width', 'options': 
+                                [
+                                  {'label': 'Sí', 'value': 'true'},
+                                  {'label': 'No', 'value': 'false'}
+                                ]
+                              },
+                              {'name': 'title', 'element':'input', 'type': 'text', 'label': 'Título', 'width': 'half-width'},
+                              {'name': 'description', 'element':'textarea', 'label': 'Descripción', 'width': 'full-width'}
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    {'element': 'subtable', 'width': 'half-width', 'endpoint': '/api/admin/menu-items', 'structure': 
+                      {
+                        'sortable': true,
+                        'headers': [
+                          {'label': 'Título', 'field': 'title'},
+                          {'label': 'Url', 'field': 'url'}
+                        ],
+                        'recordButtons': ['sortable', 'edit', 'remove'],
+                        'tableButtons': ['sortableButton']
+                      }
+                    }
+                  ]
+                }
+              ]}
+            ]
+          }
+        }
+      }"
+    />
+    </form-component>
+    
+  </crud-component>
+</main-component>

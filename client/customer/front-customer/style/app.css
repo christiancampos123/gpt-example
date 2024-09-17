@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'SoehneBuch'; 
+  font-style: normal; 
+  font-weight: normal; 
+  src: url('soehne-buch.woff2') format('woff2'); 
+}
+
+body{
+  background-color: hsl(235, 11%, 23%);
+  margin: 0;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+
+

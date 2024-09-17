@@ -1,0 +1,92 @@
+<delete-element-modal-component></delete-element-modal-component>
+<image-gallery-component></image-gallery-component>
+<message-component></message-component>
+
+<header-component>
+  <row-component options='{"columns":"8fr 2fr", "height":"100px"}'>
+    <column-component>
+      <logo-component title="Pedidos"></logo-component>
+    </column-component>
+    <column-component options='{"justifyContent":"flex-end"}'>
+      <menu-component></menu-component>
+    </column-component>
+  </row-component>
+</header-component>
+
+<main-component padding="0.5rem">
+  <crud-component>
+    <!-- <table-filter
+      slot='filter'
+      url='/api/admin/assitants'
+    /> -->
+
+    <table-component
+      slot="table"
+      endpoint="/api/admin/assistants"
+      structure="{
+        'headers': [
+          {'label': 'Nombre', 'field': 'name'},
+          {'label': 'Fecha de creación', 'field': 'createdAt'},
+          {'label': 'Fecha de actualización', 'field': 'updatedAt'}
+        ],
+        'recordButtons': ['edit', 'remove'],
+        'tableButtons': ['filterButton']
+      }"/>
+    </table-component>
+
+    <form-component
+      slot="form"
+      endpoint="/api/admin/assistants"
+      structure="{
+        'tabs': [
+          {'name': 'general', 'label': 'General'}
+        ],
+        'inputs': {
+          'general': {
+            'noLocale': [
+              {'name': 'id', 'element':'input', 'type': 'hidden'},
+              {'name': 'name', 'element':'input', 'type': 'text', 'label': 'Nombre', 'width': 'half-width'},
+              {'name': 'assistantEndpoint', 'element':'input', 'type': 'text', 'label': 'Endpoint', 'width': 'half-width'},
+              {'element': 'dependants', 'childs': [
+                {
+                  'name': 'examples', 
+                  'label': 'Mensajes de ejemplo',
+                  'locale': false,
+                  'structure': [
+                    {'element': 'subform', 'width': 'half-width', 'endpoint': '/api/admin/assistant-examples', 'structure': 
+                      {
+                        'tabs': [
+                          {'name': 'general', 'label': 'General'}
+                        ],
+                        'inputs': {
+                          'general': {
+                            'noLocale': [
+                              {'name': 'id', 'element':'input', 'type': 'hidden'},
+                              {'name': 'title', 'element':'input', 'type': 'text', 'label': 'Título', 'width': 'full-width'},
+                              {'name': 'description', 'element':'input', 'type': 'text', 'label': 'Descripción', 'width': 'full-width'},
+                              {'name': 'prompt', 'element':'textarea', 'label': 'Prompt', 'width': 'full-width'}
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    {'element': 'subtable', 'width': 'half-width', 'endpoint': '/api/admin/assistant-examples', 'structure': 
+                      {
+                        'headers': [
+                          {'label': 'Título', 'field': 'title'}
+                        ],
+                        'recordButtons': ['edit', 'remove']
+                      }
+                    }
+                  ]
+                }
+              ]}
+            ]
+          }
+        }
+      }"
+    />
+    </form-component>
+    
+  </crud-component>
+</main-component>

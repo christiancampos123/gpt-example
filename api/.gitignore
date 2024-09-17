@@ -1,0 +1,9 @@
+/node_modules
+.env
+package-lock.json
+/src/config/config.json
+/storage/images/gallery/original/*
+/storage/images/gallery/thumbnail/*
+/storage/images/resized/*
+/storage/pdfs/*
+/storage/tmp/*

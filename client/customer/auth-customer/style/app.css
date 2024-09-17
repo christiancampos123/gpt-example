@@ -1,0 +1,58 @@
+body{
+  background: 
+    radial-gradient(ellipse at center, hsla(240, 86%, 57%, 0.3) 0%, rgba(0,0,0,0) 70%),
+    radial-gradient(ellipse at center, hsla(260, 81%, 18%, 0.3) 0%, rgba(0,0,0,0) 70%), 
+    radial-gradient(ellipse at center, hsla(316, 94%, 14%, 0.3) 0%, rgba(0,0,0,0) 70%) 
+    #170150;
+  background-repeat: 
+    no-repeat, 
+    no-repeat, 
+    no-repeat;
+  background-size: 
+    900px 900px,
+    900px 900px,
+    900px 900px;
+  margin: 0;
+  max-width: 100%;
+  max-height: 100vh;
+}
+
+body.block-scroll{
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  display: flex;
+  height: 10px;
+  width: 100%;
+  background-image: linear-gradient(
+    to right, 
+    hsl(46, 94%, 51%) 0%, 
+    hsl(271, 100%, 45%) 25%, 
+    hsl(194, 100%, 47%) 50%, 
+    hsl(358, 84%, 45%) 75%,
+    hsl(358, 84%, 45%) 100%
+  );
+}
+
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #6649b8;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}

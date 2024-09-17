@@ -1,0 +1,22 @@
+{
+  "name": "custom-gpt",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --mode development",
+    "build": "vite build --mode production",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "standard": "^17.1.0",
+    "vite": "^5.0.8"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.1.0",
+    "lodash-es": "^4.17.21",
+    "redux": "^5.0.1",
+    "sortablejs": "^1.15.2",
+    "webfontloader": "^1.6.28"
+  }
+}

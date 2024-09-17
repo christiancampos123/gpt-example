@@ -1,0 +1,38 @@
+body{
+  background: 
+    radial-gradient(ellipse at center, hsla(240, 86%, 57%, 0.3) 0%, rgba(0,0,0,0) 70%),
+    radial-gradient(ellipse at center, hsla(260, 81%, 18%, 0.3) 0%, rgba(0,0,0,0) 70%), 
+    radial-gradient(ellipse at center, hsla(316, 94%, 14%, 0.3) 0%, rgba(0,0,0,0) 70%) 
+    #170150;
+  background-repeat: 
+    no-repeat, 
+    no-repeat, 
+    no-repeat;
+  background-size: 
+    900px 900px,
+    900px 900px,
+    900px 900px;
+  margin: 0;
+  max-width: 100%;
+  max-height: 100vh;
+  overflow-x: hidden;
+  padding: 1rem;
+}
+
+body.block-scroll{
+  overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #6649b8;
+}
+
+

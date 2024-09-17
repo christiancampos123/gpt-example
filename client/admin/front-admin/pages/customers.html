@@ -1,0 +1,97 @@
+<delete-element-modal-component></delete-element-modal-component>
+<image-gallery-component></image-gallery-component>
+<message-component></message-component>
+
+<header-component>
+  <row-component options='{"columns":"8fr 2fr", "height":"100px"}'>
+    <column-component>
+      <logo-component title="Pedidos"></logo-component>
+    </column-component>
+    <column-component options='{"justifyContent":"flex-end"}'>
+      <menu-component></menu-component>
+    </column-component>
+  </row-component>
+</header-component>
+
+<main-component padding="0.5rem">
+  <crud-component>
+    <!-- <table-filter
+      slot='filter'
+      url='/api/admin/users'
+    /> -->
+
+    <table-component
+      slot="table"
+      endpoint="/api/admin/customers"
+      structure="{
+        'headers': [
+          {'label': 'Nombre', 'field': 'commercialName'},
+          {'label': 'Fecha de creación', 'field': 'createdAt'},
+          {'label': 'Fecha de actualización', 'field': 'updatedAt'}
+        ],
+        'recordButtons': ['edit', 'remove'],
+        'tableButtons': ['filterButton']
+      }"/>
+    </table-component>
+
+    <form-component
+      slot="form"
+      endpoint="/api/admin/customers"
+      structure="{
+        'tabs': [
+          {'name': 'general', 'label': 'General'}
+        ],
+        'inputs': {
+          'general': {
+            'noLocale': [
+              {'name': 'id', 'element':'input', 'type': 'hidden'},
+              {'name': 'commercialCategoryId', 'element': 'select', 'label': 'Categoria', 'width': 'half-width', 'endpoint': '/api/admin/commercial-categories/get-categories'},
+              {'name': 'commercialName', 'element':'input', 'type': 'text', 'label': 'Nombre comercial', 'width': 'half-width'},
+              {'element': 'dependants', 'childs': [
+                {
+                  'name': 'staff', 
+                  'label': 'Personal de la empresa',
+                  'locale': false,
+                  'structure': [
+                    {'element': 'subform', 'width': 'half-width', 'endpoint': '/api/admin/customer-staffs', 'structure': 
+                      {
+                        'tabs': [
+                          {'name': 'general', 'label': 'General'}
+                        ],
+                        'inputs': {
+                          'general': {
+                            'noLocale': [
+                              {'name': 'id', 'element':'input', 'type': 'hidden'},
+                              {'name': 'staffCategoryId', 'element': 'select', 'label': 'Categoría', 'width': 'full-width', 'endpoint': '/api/admin/staff-categories/get-categories'},
+                              {'name': 'language', 'element': 'select', 'label': 'Idioma', 'width': 'half-width', 'endpoint': '/api/admin/languages/get-languages'},
+                              {'name': 'name', 'element':'input', 'type': 'text', 'label': 'Nombre del encargado', 'width': 'half-width'},
+                              {'name': 'surname', 'element':'input', 'type': 'text', 'label': 'Apellidos del encargado', 'width': 'half-width'},
+                              {'name': 'email', 'element':'input', 'type': 'email', 'label': 'Email', 'width': 'half-width'}
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    {'element': 'subtable', 'width': 'half-width', 'endpoint': '/api/admin/customer-staffs', 'structure': 
+                      {
+                        'headers': [
+                          {'label': 'Categoría', 'field': 'staffCategory'},
+                          {'label': 'Nombre', 'field': 'name'},
+                          {'label': 'Apellidos', 'field': 'surname'},
+                          {'label': 'Email', 'field': 'email'}
+                        ],
+                        'recordButtons': ['edit', 'remove']
+                      }
+                    }
+                  ]
+                }
+              ]}
+            ]
+          }
+        }
+      }"
+    />
+    </form-component>
+    
+  </crud-component>
+</main-component>
