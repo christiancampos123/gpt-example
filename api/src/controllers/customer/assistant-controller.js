@@ -22,12 +22,11 @@ exports.findAll = (req, res) => {
 }
 
 exports.assistantResponse = async (req, res) => {
- 
   const openai = new OpenAIService()
-  
-  if(req.body.threadId) {
+
+  if (req.body.threadId) {
     await openai.setThread(req.body.threadId)
-  }else {
+  } else {
     await openai.createThread()
   }
 

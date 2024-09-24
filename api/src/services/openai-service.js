@@ -1,4 +1,3 @@
-const dotenv = require('dotenv').config()
 const OpenAI = require('openai')
 
 module.exports = class OpenAIService {
@@ -102,6 +101,86 @@ module.exports = class OpenAIService {
     })
 
     return response.choices[0].message.content
+  }
+
+  filterProducts = async (prompt, data) => {
+    try {
+      const response = await this.openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [
+          {
+            role: 'system',
+            content: [
+              {
+                type: 'text',
+                text: 'Ante la pregunta del usuario, proporciona una respuesta humana que contenga los elementos que más se acerquen a la búsqueda del usuario y contengan la url de cada elemento (entre las etiquetas <url></url>). Si no encuentras nada responde "No he encontrado nada".'
+              }
+            ]
+          },
+          {
+            role: 'user',
+            content: [
+              {
+                type: 'text',
+                text: `El usuario ha preguntado lo siguiente: ${prompt}, y estos son los datos que se han obtenido: ${data}`
+              }
+            ]
+          }
+        ],
+        temperature: 1,
+        max_tokens: 2048,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+        response_format: {
+          type: 'text'
+        }
+      })
+
+      return response.choices[0].message.content
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  extractKeywordsAndCategory = async (prompt) => {
+    try {
+      const response = await this.openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [
+          {
+            role: 'system',
+            content: [
+              {
+                type: 'text',
+                text: ' Extrae en formato JSON una categoría entre "juego", "consola", "consola y juego", "accesorio" que resuma la frase aportada por el usuario. Además extrae las palabras clave, elige un máximo de 6 palabras que sean relevantes para describir el producto de manera única e identificable. Ejemplo: {"keywords": ["gameboy", "pocket", "roja"], category: "consola"}'
+              }
+            ]
+          },
+          {
+            role: 'user',
+            content: [
+              {
+                type: 'text',
+                text: `${prompt}`
+              }
+            ]
+          }
+        ],
+        temperature: 1,
+        max_tokens: 2048,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+        response_format: {
+          type: 'json_object'
+        }
+      })
+
+      return JSON.parse(response.choices[0].message.content)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   extractCode (response) {

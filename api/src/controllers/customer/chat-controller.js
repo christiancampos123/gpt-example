@@ -5,7 +5,6 @@ exports.findAll = (req, res) => {
   Chat.find({ customerStaffId: req.customerStaffId }, 'assistantEndpoint threadId resume')
     .sort({ createdAt: -1 })
     .then(result => {
-      console.log(result)
       res.status(200).send(result)
     }).catch(err => {
       res.status(500).send({

@@ -10,6 +10,8 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "bowser": "^2.11.0",
+    "chromadb": "^1.8.1",
+    "chromadb-default-embed": "^2.13.2",
     "connect-mongo": "^5.1.0",
     "connect-redis": "^7.1.1",
     "cors": "^2.8.5",
@@ -28,7 +30,8 @@
     "nodemailer": "^6.8.0",
     "openai": "^4.24.7",
     "pluralize": "^8.0.0",
-    "puppeteer": "^22.7.1",
+    "puppeteer": "^23.4.0",
+    "selenium-webdriver": "^4.24.1",
     "sequelize": "^6.25.5",
     "sharp": "^0.33.2",
     "sortablejs": "^1.15.2",

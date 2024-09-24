@@ -6,6 +6,5 @@ module.exports = (app) => {
   router.get('/', [authCustomerJwt.verifyCustomerToken], controller.findAll)
   router.post('/response', [authCustomerJwt.verifyCustomerToken], controller.assistantResponse)
 
-
   app.use('/api/customer/assistants', router)
 }

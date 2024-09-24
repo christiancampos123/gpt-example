@@ -2,8 +2,9 @@
 .env
 package-lock.json
 /src/config/config.json
-/storage/images/gallery/original/*
-/storage/images/gallery/thumbnail/*
-/storage/images/resized/*
-/storage/pdfs/*
-/storage/tmp/*
+/src/storage/images/gallery/original/*
+/src/storage/images/gallery/thumbnail/*
+/src/storage/images/resized/*
+/src/storage/pdfs/*
+/src/storage/tmp/*
+/src/chromadb
